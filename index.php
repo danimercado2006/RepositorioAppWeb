@@ -30,7 +30,7 @@
             color: #9599ee;
         }
         h6 {
-            color: #86eda5;
+            color: #77f89d;
         }
         </style>
 </head>

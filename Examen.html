@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Noticiero</title>
+    <style>
+        body {
+            margin: 0;
+            background: #f2f2f2;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #111;
+        }
+
+        .pagina {
+            max-width: 1200px;
+            margin: 10px auto;
+            background: #dfeaf5;
+            padding: 10px;
+            border: 1px solid #b7c5d5;
+        }
+
+        .encabezado {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            background: #dfeaf5;
+        }
+
+        .marca {
+            text-align: center;
+        }
+
+        .logo {
+            width: 130px;
+            height: auto;
+            display: block;
+        }
+
+        .titulo {
+            margin: 0;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            letter-spacing: 2px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .frase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin-top: 8px;
+            padding-bottom: 8px;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .frase span {
+            position: relative;
+        }
+
+        .frase span:not(:last-child)::after {
+            content: "·";
+            position: absolute;
+            right: -15px;
+        }
+
+        .lema {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            margin: 0 0 10px 0;
+            padding: 4px 0;
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+        }
+
+        .secciones {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            padding: 14px 10px;
+            background: #dfeaf5;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .fecha {
+            min-width: 270px;
+            border: 2px solid #000;
+            background: #f6f6f6;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .fecha .fecha-texto {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .fecha .linea {
+            height: 1px;
+            background: #000;
+            margin: 10px 0;
+        }
+
+        .fecha .edicion {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .noticias {
+            display: grid;
+            grid-template-columns: minmax(220px, 1fr) minmax(380px, 2fr) minmax(220px, 1fr);
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .bloque {
+            min-width: 0;
+            padding: 14px;
+            background: #fff;
+            border: 1px solid #b7c5d5;
+        }
+
+        .subtitulo {
+            margin: 0 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #26394d;
+            font-size: 1.35rem;
+            text-transform: uppercase;
+        }
+
+        .noticia-corta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #aeb8c2;
+        }
+
+        .noticia-corta:last-child {
+            border-bottom: 0;
+        }
+
+        .noticia-corta img {
+            width: 74px;
+            height: 62px;
+            flex: 0 0 74px;
+            object-fit: cover;
+        }
+
+        .noticia-corta h3 {
+            margin: 0 0 5px;
+            font-size: 0.98rem;
+        }
+
+        .pagina-numero {
+            margin: 0;
+            color: #4d5965;
+            font-size: 0.85rem;
+        }
+
+        .principal h2 {
+            margin: 0 0 8px;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        .principal .descripcion {
+            margin: 0 0 14px;
+            line-height: 1.5;
+        }
+
+        .principal img {
+            display: block;
+            width: calc(100% - 16px);
+            height: 300px;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        .lateral {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lateral .bloque {
+            flex: 1;
+        }
+
+        .imagen-destacada {
+            display: block;
+            width: calc(100% - 8px);
+            height: 145px;
+            margin: 0 auto 10px;
+            object-fit: cover;
+        }
+
+        .titulo-noticia {
+            margin: 0 0 8px;
+            font-size: 1.15rem;
+        }
+
+        .resumen {
+            margin: 0 0 10px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+
+        .pagina-destacada {
+            margin: 0;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        .pronostico {
+            display: grid;
+            gap: 8px;
+        }
+
+        .dia {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #c3ccd5;
+        }
+
+        .dia:last-child {
+            border-bottom: 0;
+        }
+
+        .cierre {
+            margin-top: 12px;
+            padding: 10px 0;
+            border-top: 2px solid #26394d;
+            border-bottom: 2px solid #26394d;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 850px) {
+            .noticias {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+            }
+
+            .lateral {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .encabezado {
+                flex-wrap: wrap;
+            }
+
+            .noticias,
+            .lateral {
+                grid-template-columns: 1fr;
+            }
+
+            .lateral {
+                grid-column: auto;
+            }
+
+            .principal img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pagina">
+        <header class="encabezado">
+            <img class="logo" src="logo.png" alt="Logo del noticiero">
+
+            <div class="marca">
+                <h1 class="titulo">EL NOTICIERO</h1>
+            </div>
+
+            <div class="fecha">
+                <p class="fecha-texto">Lunes, 26 de mayo de 2025</p>
+                <div class="linea"></div>
+                <p class="edicion">Año XX | N°7842</p>
+            </div>
+        </header>
+
+        <div class="lema">
+            <div class="frase">
+                <span>Informacion</span>
+                <span>Actualidad</span>
+                <span>Tu diario</span>
+            </div>
+        </div>
+
+        <nav class="secciones" aria-label="Secciones del noticiero">
+            <span>Inicio</span>
+            <span>Mundo</span>
+            <span>Nacional</span>
+            <span>Economia</span>
+            <span>Deportes</span>
+            <span>Tecnologia</span>
+            <span>Cultura</span>
+        </nav>
+
+        <main class="noticias">
+            <section class="bloque" aria-labelledby="latest-title">
+                <h2 class="subtitulo" id="latest-title">Ultimas noticias</h2>
+                <article class="noticia-corta">
+                    <img src="logo.png" alt="">
+                    <div>
+                        <h3>Avances para una ciudad más sostenible</h3>
+                        <p class="pagina-numero">Página 2</p>
+                    </div>
+                </article>
+                <article class="noticia-corta">
+                    <img src="logo.png" alt="">
+                    <div>
+                        <h3>Nuevos proyectos impulsan la educación</h3>
+                        <p class="pagina-numero">Página 3</p>
+                    </div>
+                </article>
+                <article class="noticia-corta">
+                    <img src="logo.png" alt="">
+                    <div>
+                        <h3>La tecnología transforma el trabajo</h3>
+                        <p class="pagina-numero">Página 4</p>
+                    </div>
+                </article>
+                <article class="noticia-corta">
+                    <img src="logo.png" alt="">
+                    <div>
+                        <h3>Deporte local: resultados del fin de semana</h3>
+                        <p class="pagina-numero">Página 5</p>
+                    </div>
+                </article>
+            </section>
+
+            <article class="bloque principal">
+                <h2>Una nueva mirada al futuro de nuestra comunidad</h2>
+                <p class="descripcion">Iniciativas ciudadanas y proyectos innovadores están abriendo oportunidades y mejorando la vida en nuestras comunidades.</p>
+                <img src="logo.png" alt="Imagen de la noticia principal">
+            </article>
+
+            <div class="lateral">
+                <section class="bloque" aria-labelledby="highlight-title">
+                    <h2 class="subtitulo" id="highlight-title">Destacado</h2>
+                    <img class="imagen-destacada" src="logo.png" alt="Imagen de la noticia destacada">
+                    <h3 class="titulo-noticia">Pequeñas acciones, grandes cambios</h3>
+                    <p class="resumen">Cada decisión cuenta. Desde el consumo responsable hasta el apoyo a la educación, podemos hacer la diferencia.</p>
+                    <p class="pagina-destacada">Página 7</p>
+                </section>
+
+                <section class="bloque" aria-labelledby="weather-title">
+                    <h2 class="subtitulo" id="weather-title">El tiempo</h2>
+                    <div class="pronostico">
+                        <div class="dia"><span>Hoy</span><span> 24° / 16°</span></div>
+                        <div class="dia"><span>Mañana</span><span> 22° / 15°</span></div>
+                        <div class="dia"><span>Miércoles</span><span> 19° / 13°</span></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="cierre">JUNTOS HACEMOS LA DIFERENCIA</footer>
+    </div>
+</body>
+</html>

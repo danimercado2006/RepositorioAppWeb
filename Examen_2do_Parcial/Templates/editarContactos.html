@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Contactos</title>
+</head>
+<body>
+    <div>
+        <form action="/actualizar/{{contacto.0}}" method="POST">
+            <input type="text" name="txtNombre" value="{{ contacto.1 }}">
+            <input type="text" name="txtApellido" value="{{ contacto.2 }}">
+            <input type="text" name="txtTelefono" value="{{ contacto.3 }}">
+            <input type="text" name="txtCorreo" value="{{ contacto.4}}">
+            <input type="text" name="txtDireccion" value="{{ contacto.5 }}">
+            <button type="submit" ">Eliminar</button>
+    </div>
+    
+</body>
+</html>

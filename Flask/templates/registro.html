@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+      <style>
+        .formulario
+        {
+            margin :50px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario">
+        <h1>REGISTRO</h1>
+        <FORM action="/registro" method="POST">
+            <fieldset class="fieldset">
+                <label class="label" for="nombre">Nombre:</label>
+                <input type="text" id="nombre" class="input" placeholder="Ej. Daniela" />
+            </fieldset>
+            <br>
+            <fieldset class="fieldset">
+                <label class="label" for="apellido_p">Apellido Paterno:</label>
+                <input type="text" id="apellido_p" class="input" placeholder="Ej. Ramírez" />
+            </fieldset>
+            <br>
+            <fieldset class="fieldset">
+                <label class="label" for="apellido_m">Apellido Materno:</label>
+                <input type="text" id="apellido_m" class="input" placeholder="Ej. Mercado" />
+            </fieldset>
+            <br>
+            <fieldset class="fieldset">
+                <label class="label" for="correo">Correo:</label>
+                <input type="email" id="correo" class="input" placeholder="Ej.dani@gmail.com" />
+            </fieldset>
+            <br>
+            <fieldset class="fieldset">
+                <label class="label" for="id">Rol:</label>
+                <select class="select" name="id_rol" id="id_rol">
+                    <option disabled selected>Rol</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Usuario</option>
+                    
+                </select>
+            </fieldset>
+          
+            
+                
+            <br>
+            <fieldset class="fieldset">
+                <label class="label" for="password">Contraseña:</label>
+                <input type="password" id="password" class="input" />
+            </fieldset>
+            
+            <br><br>
+            <button type="submit" class="btn btn-warning">Registrarse</button>
+        </FORM>
+        <p><a href="{{ url_for('login')}}">REGRESAR</a></p>
+    </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</html>

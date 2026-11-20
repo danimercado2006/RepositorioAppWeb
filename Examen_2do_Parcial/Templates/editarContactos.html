@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Contactos</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6">
+
+    <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Editar Contactos</h1>
+
+        <form action="/actualizar/{{contacto.0}}" method="POST" class="flex flex-col gap-3">
+            <label class="label-text">Nombre:</label>
+            <input type="text" name="txtNombre" value="{{ contacto.1 }}" class="input input-bordered" required>
+
+            <label class="label-text">Apellido:</label>
+            <input type="text" name="txtApellido" value="{{ contacto.2 }}" class="input input-bordered" required>
+
+            <label class="label-text">Teléfono:</label>
+            <input type="text" name="txtTelefono" value="{{ contacto.3 }}" class="input input-bordered" required>
+
+            <label class="label-text">Correo:</label>
+            <input type="text" name="txtCorreo" value="{{ contacto.4 }}" class="input input-bordered" required>
+
+            <label class="label-text">Dirección:</label>
+            <input type="text" name="txtDireccion" value="{{ contacto.5 }}" class="input input-bordered" required>
+
+            <button type="submit" class="btn btn-primary mt-2">Editar</button>
+            <a href="{{ url_for('index') }}" class="btn btn-outline">Regresar</a>
+        </form>
+    </div>
+
+</body>
+</html>

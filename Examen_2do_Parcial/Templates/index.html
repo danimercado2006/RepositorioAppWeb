@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD directorio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6">
+
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Directorio</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msj in messages %}
+                    <div class="alert alert-success mb-4">
+                        <span>{{ msj }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+      
+        <form action="/guardar" method="POST" class="flex flex-col gap-3 mb-8">
+            <input type="text" name="txtNombre" placeholder="Escribe tu nombre" class="input input-bordered" required>
+            <input type="text" name="txtApellido" placeholder="Escribe tu apellido" class="input input-bordered" required>
+            <input type="text" name="txtTelefono" placeholder="Escribe tu numero de telefono" class="input input-bordered" required>
+            <input type="text" name="txtCorreo" placeholder="Escribe tu correo" class="input input-bordered" required>
+            <input type="text" name="txtDireccion" placeholder="Escribe tu dirección" class="input input-bordered" required>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+        <div class="overflow-x-auto">
+            <table class="table table-zebra border">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Direccion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contacto in contactos %}
+                        <tr>
+                            <td>{{ contacto.1 }}</td>
+                            <td>{{ contacto.2 }}</td>
+                            <td>{{ contacto.3 }}</td>
+                            <td>{{ contacto.4 }}</td>
+                            <td>{{ contacto.5 }}</td>
+                            <td>
+                                <a href="/editar/{{contacto.0}}" class="btn btn-sm btn-warning">Editar</a>
+                                <a href="/eliminar/{{contacto.0}}" class="btn btn-sm btn-error">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

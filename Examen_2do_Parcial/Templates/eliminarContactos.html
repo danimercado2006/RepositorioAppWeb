@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Contacto</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6">
+
+    <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Eliminar contacto</h1>
+
+        <form action="/eliminar/{{contacto.0}}" method="POST" class="flex flex-col gap-3">
+            <label class="label-text">Nombre:</label>
+            <input type="text" name="txtNombre" value="{{ contacto.1 }}" class="input input-bordered" readonly>
+
+            <label class="label-text">Apellido:</label>
+            <input type="text" name="txtApellido" value="{{ contacto.2 }}" class="input input-bordered" readonly>
+
+            <label class="label-text">Teléfono:</label>
+            <input type="text" name="txtTelefono" value="{{ contacto.3 }}" class="input input-bordered" readonly>
+
+            <label class="label-text">Correo:</label>
+            <input type="text" name="txtCorreo" value="{{ contacto.4 }}" class="input input-bordered" readonly>
+
+            <label class="label-text">Dirección:</label>
+            <input type="text" name="txtDireccion" value="{{ contacto.5 }}" class="input input-bordered" readonly>
+
+            <button type="submit" class="btn btn-error mt-2" onclick="return Eliminar()">Eliminar</button>
+            <button type="button" class="btn btn-outline" onclick="Regresar()">Regresar</button>
+        </form>
+
+        <script>
+            function Eliminar()
+            {
+                return confirm("Estas seguro de que deseas eliminar este contacto?")
+            }
+            function Regresar()
+            {
+                window.location.href="{{url_for('index')}}"
+            }
+        </script>
+    </div>
+
+</body>
+</html>
